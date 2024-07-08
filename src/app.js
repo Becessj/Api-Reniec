@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import helmet from "helmet";
 import router from "./routes/reniecsunat.routes";
 import morgan from 'morgan';
-import {PORT} from './config';
+
 // Initializations
 dotenv.config();
 const app = express();
