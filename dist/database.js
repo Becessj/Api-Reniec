@@ -13,7 +13,7 @@ var dbConnection = _mysql["default"].createConnection({
   host: "localhost",
   user: "root",
   password: "",
-  database: "rest-api-paises-nodejs-jwt-mysql"
+  database: "restapi"
 });
 
 exports.dbConnection = dbConnection;

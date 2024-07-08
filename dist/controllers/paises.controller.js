@@ -55,9 +55,10 @@ var createPais = function createPais(req, res) {
       gentilico = _req$body.gentilico,
       moneda = _req$body.moneda,
       continente = _req$body.continente,
-      extension = _req$body.extension;
+      extension = _req$body.extension,
+      link_img = _req$body.link_img;
 
-  _database.dbConnection.query("INSERT INTO paises ( nombre_oficial, nombre_comun, fechaCreacion, capital, idioma_oficial, gentilico, moneda, continente, extension) VALUES(?,?,?,?,?,?,?,?,?)", [nombre_oficial, nombre_comun, fechaCreacion, capital, idioma_oficial, gentilico, moneda, continente, extension], function (err, rows) {
+  _database.dbConnection.query("INSERT INTO paises ( nombre_oficial, nombre_comun,link_img, fechaCreacion, capital, idioma_oficial, gentilico, moneda, continente, extension) VALUES(?,?,?,?,?,?,?,?,?)", [nombre_oficial, nombre_comun, fechaCreacion, capital, idioma_oficial, gentilico, moneda, continente, extension, link_img], function (err, rows) {
     if (!err) {
       return res.status(201).json({
         message: "Pais saved",
@@ -70,7 +71,8 @@ var createPais = function createPais(req, res) {
           gentilico: gentilico,
           moneda: moneda,
           continente: continente,
-          extension: extension
+          extension: extension,
+          link_img: link_img
         }
       });
     } else {
@@ -96,10 +98,11 @@ var updatePais = function updatePais(req, res) {
       gentilico = _req$body2.gentilico,
       moneda = _req$body2.moneda,
       continente = _req$body2.continente,
-      extension = _req$body2.extension;
+      extension = _req$body2.extension,
+      link_img = _req$body2.link_img;
   var updatedAt = new Date();
 
-  _database.dbConnection.query("UPDATE paises SET nombre_oficial=?, nombre_comun=?, fechaCreacion=?, capital=?, idioma_oficial=?, gentilico=?, moneda=?, continente=?, extension=?,updatedAt=? WHERE id=?", [nombre_oficial, nombre_comun, fechaCreacion, capital, idioma_oficial, gentilico, moneda, continente, extension, updatedAt, id], function (err, rows) {
+  _database.dbConnection.query("UPDATE paises SET nombre_oficial=?, nombre_comun=?, link_img=? fechaCreacion=?, capital=?, idioma_oficial=?, gentilico=?, moneda=?, continente=?, extension=?,updatedAt=? WHERE id=?", [nombre_oficial, nombre_comun, link_img, fechaCreacion, capital, idioma_oficial, gentilico, moneda, continente, extension, updatedAt, id], function (err, rows) {
     if (!err) {
       return res.status(200).json({
         message: "Pais updated",
@@ -107,6 +110,7 @@ var updatePais = function updatePais(req, res) {
           id: id,
           nombre_oficial: nombre_oficial,
           nombre_comun: nombre_comun,
+          link_img: link_img,
           fechaCreacion: fechaCreacion,
           capital: capital,
           idioma_oficial: idioma_oficial,

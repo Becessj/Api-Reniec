@@ -20,8 +20,9 @@ export const getPaisById = (req, res) => {
   const { id } = req.params;
   dbConnection.query("SELECT * FROM paises WHERE id = ?", [id], (err, rows) => {
     if (!err) {
+      // console.log(rows[0])
       return (
-        res.status(200),
+        res.status(200).
         json({
           pais: rows,
         })

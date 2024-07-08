@@ -69,7 +69,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `createdAt`) VALUES
-(3, 'damian_zsiros', '0303100', '2021-01-16 00:00:46');
+(3, 'cris', '123456', '2021-01-16 00:00:46');
 
 --
 -- Índices para tablas volcadas

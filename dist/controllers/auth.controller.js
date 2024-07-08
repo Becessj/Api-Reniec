@@ -9,6 +9,8 @@ var _database = require("../database");
 
 var _jsonwebtoken = _interopRequireDefault(require("jsonwebtoken"));
 
+var _bcryptjs = _interopRequireDefault(require("bcryptjs"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var login = function login(req, res) {
@@ -17,7 +19,7 @@ var login = function login(req, res) {
       password = _req$body.password;
 
   if (username && password && (username !== "" || password !== "")) {
-    _database.dbConnection.query("SELECT * FROM users WHERE username=? AND password=?", [username, password], function (err, rows, fields) {
+    _database.dbConnection.query("SELECT * FROM users WHERE username=?", [username, password], function (err, rows, fields) {
       if (!err) {
         if (rows.length > 0) {
           var token = _jsonwebtoken["default"].sign({
@@ -58,7 +60,9 @@ var signup = function signup(req, res) {
     _database.dbConnection.query("SELECT * FROM users WHERE username=?", [username], function (err, rows, fields) {
       if (!err) {
         if (!rows.length > 0) {
-          _database.dbConnection.query("INSERT INTO users (username,password) VALUES(?,?)", [username, password], function (err) {
+          var passEncryptd = _bcryptjs["default"].hashSync(password, 10);
+
+          _database.dbConnection.query("INSERT INTO users (username,password) VALUES(?,?)", [username, passEncryptd], function (err) {
             if (!err) {
               return res.status(200).json({
                 message: "Singup succesfully. Login now..."
