@@ -7,13 +7,15 @@ exports.dbConnection = void 0;
 
 var _mysql = _interopRequireDefault(require("mysql"));
 
+var _config = require("./config.js");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var dbConnection = _mysql["default"].createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "restapi"
+  host: _config.DB_HOST,
+  user: _config.DB_USER,
+  password: _config.DB_PASSWORD,
+  database: _config.DB_DATABASE
 });
 
 exports.dbConnection = dbConnection;

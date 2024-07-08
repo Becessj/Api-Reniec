@@ -18,19 +18,33 @@ var login = function login(req, res) {
       username = _req$body.username,
       password = _req$body.password;
 
-  if (username && password && (username !== "" || password !== "")) {
-    _database.dbConnection.query("SELECT * FROM users WHERE username=?", [username, password], function (err, rows, fields) {
+  if (username && password && username !== "" && password !== "") {
+    _database.dbConnection.query("SELECT * FROM users WHERE username=?", [username], function (err, rows, fields) {
       if (!err) {
         if (rows.length > 0) {
-          var token = _jsonwebtoken["default"].sign({
-            id: rows[0].id
-          }, "shh", {
-            expiresIn: 86400
-          });
+          _bcryptjs["default"].compare(password, rows[0].password, function (err, result) {
+            if (err) {
+              return res.status(500).json({
+                message: "Error en el servidor al comparar contraseñas"
+              });
+            }
 
-          return res.status(200).json({
-            message: "Logued",
-            token: token
+            if (result) {
+              var token = _jsonwebtoken["default"].sign({
+                id: rows[0].id
+              }, "shh", {
+                expiresIn: 86400
+              });
+
+              return res.status(200).json({
+                message: "Logued",
+                token: token
+              });
+            } else {
+              return res.status(401).json({
+                message: "Contraseña incorrecta"
+              });
+            }
           });
         } else {
           return res.status(400).json({
@@ -39,12 +53,15 @@ var login = function login(req, res) {
           });
         }
       } else {
-        return console.error(err);
+        console.error(err);
+        return res.status(500).json({
+          message: "Error en el servidor"
+        });
       }
     });
   } else {
-    return res.json({
-      message: "Faltan los valores del username y/o del password o estan sus valores vacios. Ingreselos e intentelo de nuevo"
+    return res.status(400).json({
+      message: "Faltan los valores del username y/o del password o están sus valores vacíos. Ingréselos e inténtelo de nuevo"
     });
   }
 };

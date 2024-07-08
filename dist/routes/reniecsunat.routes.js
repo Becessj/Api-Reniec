@@ -7,7 +7,7 @@ exports["default"] = void 0;
 
 var _express = require("express");
 
-var _documentos = require("../controllers/reniecsunat.controller");
+var _reniecsunat = require("../controllers/reniecsunat.controller");
 
 var _auth = require("../controllers/auth.controller");
 
@@ -21,7 +21,8 @@ router.get("/", function (req, res) {
 });
 router.post("/api/login", _auth.login);
 router.post("/api/signup", _auth.signup);
-router.route("/api/documentos").get(_verifyToken["default"], _documentos.getAlldocumentos).post(_verifyToken["default"], _documentos.createPais);
-router.route("/api/documento/:id").get(_verifyToken["default"], _documentos.getPaisById).put(_verifyToken["default"], _documentos.updatePais)["delete"](_verifyToken["default"], _documentos.deletePais);
+router.route("/api/documentos").get(_verifyToken["default"], _reniecsunat.getAllReniecSunat).post(_verifyToken["default"], _reniecsunat.createReniecSunat);
+router.route("/api/dni/").post(_verifyToken["default"], _reniecsunat.getReniecSunatById);
+router.route("/api/ruc/").post(_verifyToken["default"], _reniecsunat.getReniecSunatById);
 var _default = router;
 exports["default"] = _default;
