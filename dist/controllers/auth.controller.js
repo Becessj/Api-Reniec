@@ -1,23 +1,17 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.signup = exports.login = void 0;
-
 var _database = require("../database");
-
 var _jsonwebtoken = _interopRequireDefault(require("jsonwebtoken"));
-
 var _bcryptjs = _interopRequireDefault(require("bcryptjs"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-var login = function login(req, res) {
+var login = exports.login = function login(req, res) {
   var _req$body = req.body,
-      username = _req$body.username,
-      password = _req$body.password;
-
+    username = _req$body.username,
+    password = _req$body.password;
   if (username && password && username !== "" && password !== "") {
     _database.dbConnection.query("SELECT * FROM users WHERE username=?", [username], function (err, rows, fields) {
       if (!err) {
@@ -28,14 +22,12 @@ var login = function login(req, res) {
                 message: "Error en el servidor al comparar contraseñas"
               });
             }
-
             if (result) {
               var token = _jsonwebtoken["default"].sign({
                 id: rows[0].id
               }, "shh", {
-                expiresIn: 86400
+                expiresIn: 2592000
               });
-
               return res.status(200).json({
                 message: "Logued",
                 token: token
@@ -65,20 +57,15 @@ var login = function login(req, res) {
     });
   }
 };
-
-exports.login = login;
-
-var signup = function signup(req, res) {
+var signup = exports.signup = function signup(req, res) {
   var _req$body2 = req.body,
-      username = _req$body2.username,
-      password = _req$body2.password;
-
+    username = _req$body2.username,
+    password = _req$body2.password;
   if (username && password && (username !== "" || password !== "")) {
     _database.dbConnection.query("SELECT * FROM users WHERE username=?", [username], function (err, rows, fields) {
       if (!err) {
         if (!rows.length > 0) {
           var passEncryptd = _bcryptjs["default"].hashSync(password, 10);
-
           _database.dbConnection.query("INSERT INTO users (username,password) VALUES(?,?)", [username, passEncryptd], function (err) {
             if (!err) {
               return res.status(200).json({
@@ -105,5 +92,3 @@ var signup = function signup(req, res) {
     });
   }
 };
-
-exports.signup = signup;

@@ -1,26 +1,19 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports["default"] = void 0;
-
 var _jsonwebtoken = _interopRequireDefault(require("jsonwebtoken"));
-
 var _database = require("../database");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
 var verifyToken = function verifyToken(req, res, next) {
   var token = req.headers["x-access-token"];
   if (!token) return res.status(403).json({
     message: "No token provided"
   });
-
   var decoded = _jsonwebtoken["default"].verify(token, "shh");
-
   req.userId = decoded.id;
-
   try {
     _database.dbConnection.query("SELECT * FROM users WHERE id=?", [req.userId], function (err, rows, fields) {
       if (!err) {
@@ -43,6 +36,4 @@ var verifyToken = function verifyToken(req, res, next) {
     });
   }
 };
-
-var _default = verifyToken;
-exports["default"] = _default;
+var _default = exports["default"] = verifyToken;

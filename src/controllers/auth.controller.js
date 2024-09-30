@@ -20,7 +20,7 @@ export const login = (req, res) => {
 
               if (result) {
                 const token = jwt.sign({ id: rows[0].id }, "shh", {
-                  expiresIn: 86400,
+                  expiresIn: 2592000,
                 });
                 return res.status(200).json({
                   message: "Logued",
