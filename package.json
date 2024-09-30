@@ -4,11 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-<<<<<<< HEAD
-   "start": "node dist/index.js", 
-=======
-   "start": "node dist/index.js",
->>>>>>> parent of 10176c6 (change production final production final)
+   "start": "node dist/index.js",  
     "dev": "nodemon src --exec babel-node",
     "build": "babel src --out-dir dist",
     "clean": "rimraf dist"
