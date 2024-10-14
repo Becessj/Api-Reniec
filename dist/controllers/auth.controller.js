@@ -26,7 +26,7 @@ var login = exports.login = function login(req, res) {
               var token = _jsonwebtoken["default"].sign({
                 id: rows[0].id
               }, "shh", {
-                expiresIn: 2592000
+                expiresIn: 86400
               });
               return res.status(200).json({
                 message: "Logued",
