@@ -25,7 +25,7 @@ export const login = (req, res) => {
                   { expiresIn: 86400 }
                 );
                 return res.status(200).json({
-                  message: "Logged in",
+                  message: "Logged",
                   token,
                   user: {
                     id: rows[0].id,
