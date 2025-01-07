@@ -16,7 +16,7 @@ app.set("port", process.env.PORT || 3000);
 // CORS Configuration
 const corsOptions = {
   origin: [
-    '*', // Permitir a todos los orígenes
+    '*' // Permitir a todos los orígenes
     // 'http://localhost:8082',
     // 'https://transformaciondigital.guamanpoma.org'
   ], // Lista de orígenes permitidos
