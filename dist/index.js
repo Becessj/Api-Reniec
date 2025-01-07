@@ -11,16 +11,28 @@ var _config = require("./config");
 // Initializations
 _dotenv["default"].config();
 var app = (0, _express["default"])();
+
 // Settings
 app.set("port", process.env.PORT || 3000);
+
+// CORS Configuration
+var corsOptions = {
+  origin: ['http://localhost:8082', 'https://transformaciondigital.guamanpoma.org'],
+  // Lista de orígenes permitidos
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  // Métodos HTTP permitidos
+  allowedHeaders: ['Content-Type', 'Authorization'] // Headers permitidos
+};
+
 // Middlewares
-app.use((0, _cors["default"])());
-app.use((0, _helmet["default"])());
-app.use((0, _morgan["default"])("dev"));
-app.use(_express["default"].json());
+app.use((0, _cors["default"])(corsOptions)); // Aplicar CORS con las opciones configuradas
+app.use((0, _helmet["default"])()); // Helmet para mejorar la seguridad
+app.use((0, _morgan["default"])("dev")); // Morgan para el logging de las solicitudes
+app.use(_express["default"].json()); // Para manejar JSON
 app.use(_express["default"].urlencoded({
   extended: false
-}));
+})); // Para manejar datos codificados en URL
+
 // Routes
 app.use(_reniecsunat["default"]);
 
