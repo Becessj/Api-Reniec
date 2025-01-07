@@ -32,7 +32,7 @@ export const login = (req, res) => {
                     nombre: rows[0].nombre,
                     tipo: rows[0].tipo,
                   },
-                });
+                }); 
               } else {
                 return res.status(401).json({
                   message: "Incorrect password",
