@@ -15,15 +15,25 @@ var app = (0, _express["default"])();
 // Settings
 app.set("port", process.env.PORT || 3000);
 
+// Global CORS Headers
+app.use(function (req, res, next) {
+  res.setHeader("Access-Control-Allow-Origin", "*"); // O especifica dominios permitidos
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  if (req.method === "OPTIONS") {
+    return res.status(200).end(); // Finaliza las solicitudes preflight
+  }
+  next();
+});
+
 // CORS Configuration
 var corsOptions = {
-  origin: ['*',
+  origin: ["*",
   // Permitir a todos los orígenes
-  'http://localhost:8082', 'https://transformaciondigital.guamanpoma.org', 'https://santiagolimpio.guamanpoma.org', 'http://localhost:3000', 'http://10.0.0.193:8082', 'http://10.0.0.193/Sistema_MesaPartes_GPA/tramite_nuevo.php'],
-  // Lista de orígenes permitidos
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  "http://localhost:8082", "https://transformaciondigital.guamanpoma.org", "https://santiagolimpio.guamanpoma.org", "http://localhost:3000", "http://10.0.0.193:8082", "http://10.0.0.193/Sistema_MesaPartes_GPA/tramite_nuevo.php"],
+  methods: ["GET", "POST", "PUT", "DELETE"],
   // Métodos HTTP permitidos
-  allowedHeaders: ['Content-Type', 'Authorization'] // Headers permitidos
+  allowedHeaders: ["Content-Type", "Authorization"] // Headers permitidos
 };
 
 // Middlewares

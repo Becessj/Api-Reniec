@@ -3,8 +3,8 @@ import cors from "cors";
 import dotenv from "dotenv";
 import helmet from "helmet";
 import router from "./routes/reniecsunat.routes";
-import morgan from 'morgan';
-import { PORT } from './config';
+import morgan from "morgan";
+import { PORT } from "./config";
 
 // Initializations
 dotenv.config();
@@ -13,19 +13,30 @@ const app = express();
 // Settings
 app.set("port", process.env.PORT || 3000);
 
+// Global CORS Headers
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*"); // O especifica dominios permitidos
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  if (req.method === "OPTIONS") {
+    return res.status(200).end(); // Finaliza las solicitudes preflight
+  }
+  next();
+});
+
 // CORS Configuration
 const corsOptions = {
   origin: [
-    '*', // Permitir a todos los orígenes
-    'http://localhost:8082',
-    'https://transformaciondigital.guamanpoma.org',
-    'https://santiagolimpio.guamanpoma.org',
-    'http://localhost:3000',
-    'http://10.0.0.193:8082',
-    'http://10.0.0.193/Sistema_MesaPartes_GPA/tramite_nuevo.php'
-  ], // Lista de orígenes permitidos
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos HTTP permitidos
-  allowedHeaders: ['Content-Type', 'Authorization'], // Headers permitidos
+    "*", // Permitir a todos los orígenes
+    "http://localhost:8082",
+    "https://transformaciondigital.guamanpoma.org",
+    "https://santiagolimpio.guamanpoma.org",
+    "http://localhost:3000",
+    "http://10.0.0.193:8082",
+    "http://10.0.0.193/Sistema_MesaPartes_GPA/tramite_nuevo.php",
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE"], // Métodos HTTP permitidos
+  allowedHeaders: ["Content-Type", "Authorization"], // Headers permitidos
 };
 
 // Middlewares
