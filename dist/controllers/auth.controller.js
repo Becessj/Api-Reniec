@@ -77,7 +77,7 @@ var signup = exports.signup = function signup(req, res) {
           _database.dbConnection.query("INSERT INTO users (username, password, nombre, tipo) VALUES (?, ?, ?, ?)", [username, passEncryptd, nombre, tipo], function (err) {
             if (!err) {
               return res.status(200).json({
-                message: "Signup successfully. Login now2..."
+                message: "Signup successfully. Login now3..."
               });
             } else {
               console.error(err);

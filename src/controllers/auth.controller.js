@@ -80,7 +80,7 @@ export const signup = (req, res) => {
               (err) => {
                 if (!err) {
                   return res.status(200).json({
-                    message: "Signup successfully. Login now2...",
+                    message: "Signup successfully. Login now3...",
                   });
                 } else {
                   console.error(err);
