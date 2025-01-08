@@ -20,7 +20,8 @@ const corsOptions = {
     'http://localhost:8082',
     'https://transformaciondigital.guamanpoma.org',
     'https://santiagolimpio.guamanpoma.org',
-    'http://localhost:3000'
+    'http://localhost:3000',
+    'http://infoserver1:8082'
   ], // Lista de orígenes permitidos
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos HTTP permitidos
   allowedHeaders: ['Content-Type', 'Authorization'], // Headers permitidos
