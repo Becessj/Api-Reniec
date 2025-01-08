@@ -19,7 +19,7 @@ app.set("port", process.env.PORT || 3000);
 var corsOptions = {
   origin: ['*',
   // Permitir a todos los orígenes
-  'http://localhost:8082', 'https://transformaciondigital.guamanpoma.org', 'https://santiagolimpio.guamanpoma.org', 'http://localhost:3000', 'http://infoserver1:8082'],
+  'http://localhost:8082', 'https://transformaciondigital.guamanpoma.org', 'https://santiagolimpio.guamanpoma.org', 'http://localhost:3000', 'http://infoserver1:8082', 'http://infoserver1:8082/Sistema_MesaPartes_GPA/tramite_nuevo.php'],
   // Lista de orígenes permitidos
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   // Métodos HTTP permitidos
