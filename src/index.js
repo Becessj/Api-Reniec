@@ -15,17 +15,17 @@ app.set("port", process.env.PORT || 3000);
 
 // CORS Configuration
 const corsOptions = {
-  origin: ['*']
-    // '*', // Permitir a todos los orígenes
-    // 'http://localhost:8082',
-    // 'http://localhost:8080',
-    // 'http://10.0.0.216:8080',
-    // 'https://transformaciondigital.guamanpoma.org',
-    // 'https://santiagolimpio.guamanpoma.org',
-    // 'http://localhost:3000',
-    // 'http://10.0.0.193:8082',
-    // 'http://10.0.0.193/Sistema_MesaPartes_GPA/tramite_nuevo.php'
-  , // Lista de orígenes permitidos
+  origin: [
+    '*', // Permitir a todos los orígenes
+    'http://localhost:8082',
+    'http://localhost:8080',
+    'http://10.0.0.216:8080',
+    'https://transformaciondigital.guamanpoma.org',
+    'https://santiagolimpio.guamanpoma.org',
+    'http://localhost:3000',
+    'http://10.0.0.193:8082',
+    'http://10.0.0.193/Sistema_MesaPartes_GPA/tramite_nuevo.php'
+  ], // Lista de orígenes permitidos
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos HTTP permitidos
   allowedHeaders: ['Content-Type', 'Authorization'], // Headers permitidos
 };
