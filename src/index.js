@@ -16,6 +16,7 @@ app.set("port", process.env.PORT || 3000);
 // CORS Configuration
 const corsOptions = {
   origin: [
+    '*', // Permitir a todos los orígenes
     'http://localhost:8082',
     'http://localhost:8080',
     'http://10.0.0.216:8080',
