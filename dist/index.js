@@ -23,7 +23,7 @@ var corsOptions = {
   // Lista de orígenes permitidos
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   // Métodos HTTP permitidos
-  allowedHeaders: ['Content-Type', 'Authorization'] // Headers permitidos
+  allowedHeaders: ['Content-Type', 'Authorization', "x-access-token"] // Headers permitidos
 };
 
 // Middlewares

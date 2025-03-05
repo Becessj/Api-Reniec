@@ -28,7 +28,7 @@ const corsOptions = {
     'http://10.0.0.193/Sistema_MesaPartes_GPA/tramite_nuevo.php'
   ], // Lista de orígenes permitidos
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos HTTP permitidos
-  allowedHeaders: ['Content-Type', 'Authorization'], // Headers permitidos
+  allowedHeaders: ['Content-Type', 'Authorization', "x-access-token"], // Headers permitidos
 };
 
 // Middlewares
