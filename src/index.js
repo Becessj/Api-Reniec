@@ -18,6 +18,7 @@ const corsOptions = {
   origin: [
     '*', // Permitir a todos los orígenes
     'http://localhost:8082',
+    'http://190.234.243.220:8080',
     'http://localhost:8080',
     'http://10.0.0.216:8080',
     'http://10.0.0.216:3000/login',
