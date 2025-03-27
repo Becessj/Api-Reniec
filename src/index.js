@@ -18,6 +18,8 @@ const corsOptions = {
   origin: [
     '*', // Permitir a todos los orígenes
     'http://localhost:8082',
+    'https://santiagomedioambiente.transformaciondigitalcusco.in',
+    'http://santiagomedioambiente.transformaciondigitalcusco.in',
     'http://190.234.243.220:8080',
     'http://localhost:8080',
     'http://10.0.0.216:8080',
