@@ -18,6 +18,7 @@ const corsOptions = {
   origin: [
     '*', // Permitir a todos los orígenes
     'http://localhost:8082',
+    'https://santiagomedioambiente.transformaciondigitalcusco.in',
     'http://190.234.243.220:8080/Control_Compactadores/',
     'https://santiagomedioambiente.transformaciondigitalcusco.in/view/index.php',
     'https://santiagomedioambiente.transformaciondigitalcusco.in/',
