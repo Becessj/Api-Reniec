@@ -21,7 +21,7 @@ const corsOptions = {
     'http://190.234.243.220:8080/Control_Compactadores/',
     'https://santiagomedioambiente.transformaciondigitalcusco.in/view/index.php',
     'https://santiagomedioambiente.transformaciondigitalcusco.in/',
-    'https://transformaciondigitalcusco.in',
+    'https://transformaciondigitalcusco.in/',
     'http://190.234.243.220:8080',
     'http://localhost:8080',
     'http://10.0.0.216:8080',
