@@ -19,7 +19,9 @@ const corsOptions = {
     '*', // Permitir a todos los orígenes
     'http://localhost:8082',
     'https://santiagomedioambiente.transformaciondigitalcusco.in',
+    'https://tramitedocumentario.transformaciondigitalcusco.in',
     'http://190.234.243.220:8080/Control_Compactadores/',
+    'http://190.234.243.220:8080/Sistema_MesaPartes_GPA/',
     'https://santiagomedioambiente.transformaciondigitalcusco.in/view/index.php',
     'https://santiagomedioambiente.transformaciondigitalcusco.in/',
     'https://transformaciondigitalcusco.in/',
