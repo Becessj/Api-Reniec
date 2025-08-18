@@ -27,6 +27,7 @@ const corsOptions = {
     'https://transformaciondigitalcusco.in/',
     'http://190.234.243.220:8080',
     'http://localhost:8080',
+    'http://localhost:8083',
     'http://10.0.0.216:8080',
     'http://10.0.0.216:3000/login',
     'https://transformaciondigital.guamanpoma.org',
