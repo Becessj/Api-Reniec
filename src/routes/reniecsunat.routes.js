@@ -4,7 +4,11 @@ import {
   getAllReniecSunat,
   getReniecSunatById,
   getReniecSunatByIdApis,
+  getRucSmart,
+  getRucFullSmart,
 } from "../controllers/reniecsunat.controller";
+
+
 import { login, signup } from "../controllers/auth.controller";
 import verifyToken from "../middlewares/verifyToken.middleware";
 
@@ -33,9 +37,12 @@ router
   .route("/api/dni/")
   .post(verifyToken, getReniecSunatById);
 
-// Ruta para consultar RUC
-router
-  .route("/api/ruc/")
-  .post(verifyToken, getReniecSunatById);
+// Ruta para RUC básico (smart)
+router.route("/api/ruc/").post(verifyToken, getRucSmart);
+
+// Ruta para RUC full (smart)
+router.route("/api/ruc/full/").post(verifyToken, getRucFullSmart);
+
+
 
 export default router;

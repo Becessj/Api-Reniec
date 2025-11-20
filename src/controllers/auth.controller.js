@@ -21,7 +21,7 @@ export const login = (req, res) => {
               if (result) {
                 const token = jwt.sign(
                   { id: rows[0].id, tipo: rows[0].tipo },
-                  "shh",
+                  process.env.JWT_SECRET,
                   { expiresIn: 86400 }
                 );
                 return res.status(200).json({

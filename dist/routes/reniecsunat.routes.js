@@ -29,6 +29,9 @@ router.route("/api/dniApi/").post(_verifyToken["default"], _reniecsunat.getRenie
 // Ruta para consultar DNI
 router.route("/api/dni/").post(_verifyToken["default"], _reniecsunat.getReniecSunatById);
 
-// Ruta para consultar RUC
-router.route("/api/ruc/").post(_verifyToken["default"], _reniecsunat.getReniecSunatById);
+// Ruta para RUC básico (smart)
+router.route("/api/ruc/").post(_verifyToken["default"], _reniecsunat.getRucSmart);
+
+// Ruta para RUC full (smart)
+router.route("/api/ruc/full/").post(_verifyToken["default"], _reniecsunat.getRucFullSmart);
 var _default = exports["default"] = router;

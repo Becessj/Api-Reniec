@@ -4,7 +4,7 @@ import { dbConnection } from "../database";
 const verifyToken = (req, res, next) => {
   const token = req.headers["x-access-token"];
   if (!token) return res.status(403).json({ message: "No token provided" });
-  const decoded = jwt.verify(token, "shh");
+  const decoded = jwt.verify(token, process.env.JWT_SECRET);
   req.userId = decoded.id;
   try {
     dbConnection.query(

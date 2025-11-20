@@ -12,7 +12,7 @@ var verifyToken = function verifyToken(req, res, next) {
   if (!token) return res.status(403).json({
     message: "No token provided"
   });
-  var decoded = _jsonwebtoken["default"].verify(token, "shh");
+  var decoded = _jsonwebtoken["default"].verify(token, process.env.JWT_SECRET);
   req.userId = decoded.id;
   try {
     _database.dbConnection.query("SELECT * FROM users WHERE id=?", [req.userId], function (err, rows, fields) {
