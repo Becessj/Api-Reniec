@@ -34,4 +34,5 @@ router.route("/api/ruc/").post(_verifyToken["default"], _reniecsunat.getRucSmart
 
 // Ruta para RUC full (smart)
 router.route("/api/ruc/full/").post(_verifyToken["default"], _reniecsunat.getRucFullSmart);
+router.route("/api/tipo-cambio/sunat").get(_verifyToken["default"], _reniecsunat.getTipoCambioSunat);
 var _default = exports["default"] = router;

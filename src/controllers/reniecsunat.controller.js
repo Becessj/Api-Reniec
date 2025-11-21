@@ -390,3 +390,65 @@ export const getRucFullSmart = (req, res) => {
     }
   );
 };
+// ===============================
+// TIPO DE CAMBIO SUNAT (DECOLECTA)
+// ===============================
+export const getTipoCambioSunat = async (req, res) => {
+  try {
+    const { date, month, year } = req.query;
+
+    // Construir los parámetros para la API de Decolecta
+    const params = {};
+
+    // Filtro por fecha específica (YYYY-MM-DD)
+    if (date) {
+      params.date = date;
+    }
+
+    // Filtro mensual: si viene month, debe venir year
+    if (month) {
+      if (!year) {
+        return res.status(400).json({
+          error: "Si envías 'month' debes enviar también 'year'.",
+        });
+      }
+      params.month = month;
+      params.year = year;
+    }
+
+    // Llamada a la API de Decolecta
+    const response = await axios.get(
+      "https://api.decolecta.com/v1/tipo-cambio/sunat",
+      {
+        params,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.DECOLECTA_API_TOKEN}`,
+        },
+      }
+    );
+
+    const data = response.data;
+
+    // Ejemplo de respuesta esperada:
+    // {
+    //   "buy_price": "3.540",
+    //   "sell_price": "3.552",
+    //   "base_currency": "USD",
+    //   "quote_currency": "PEN",
+    //   "date": "2025-07-26"
+    // }
+
+    return res.status(200).json(data);
+  } catch (error) {
+    console.error(
+      "Error al consultar tipo de cambio SUNAT:",
+      error.response?.data || error.message
+    );
+
+    return res.status(error.response?.status || 500).json({
+      error: "Error al consultar el tipo de cambio de SUNAT",
+      detail: error.response?.data || error.message,
+    });
+  }
+};

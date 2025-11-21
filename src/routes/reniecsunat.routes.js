@@ -6,6 +6,7 @@ import {
   getReniecSunatByIdApis,
   getRucSmart,
   getRucFullSmart,
+  getTipoCambioSunat,
 } from "../controllers/reniecsunat.controller";
 
 
@@ -43,6 +44,8 @@ router.route("/api/ruc/").post(verifyToken, getRucSmart);
 // Ruta para RUC full (smart)
 router.route("/api/ruc/full/").post(verifyToken, getRucFullSmart);
 
-
+router
+  .route("/api/tipo-cambio/sunat")
+  .get(verifyToken, getTipoCambioSunat);
 
 export default router;

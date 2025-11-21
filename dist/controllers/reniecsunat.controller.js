@@ -4,7 +4,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getRucSmart = exports.getRucFullSmart = exports.getReniecSunatByIdApis = exports.getReniecSunatById = exports.getDniSmart = exports.getAllReniecSunat = exports.createRucSunat = exports.createReniecSunat = void 0;
+exports.getTipoCambioSunat = exports.getRucSmart = exports.getRucFullSmart = exports.getReniecSunatByIdApis = exports.getReniecSunatById = exports.getDniSmart = exports.getAllReniecSunat = exports.createRucSunat = exports.createReniecSunat = void 0;
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 var _database = require("../database");
@@ -424,3 +424,72 @@ var getRucFullSmart = exports.getRucFullSmart = function getRucFullSmart(req, re
     };
   }());
 };
+// ===============================
+// TIPO DE CAMBIO SUNAT (DECOLECTA)
+// ===============================
+var getTipoCambioSunat = exports.getTipoCambioSunat = /*#__PURE__*/function () {
+  var _ref6 = (0, _asyncToGenerator2["default"])(/*#__PURE__*/_regenerator["default"].mark(function _callee6(req, res) {
+    var _req$query, date, month, year, params, response, data, _error$response7, _error$response8, _error$response9;
+    return _regenerator["default"].wrap(function _callee6$(_context6) {
+      while (1) switch (_context6.prev = _context6.next) {
+        case 0:
+          _context6.prev = 0;
+          _req$query = req.query, date = _req$query.date, month = _req$query.month, year = _req$query.year; // Construir los parámetros para la API de Decolecta
+          params = {}; // Filtro por fecha específica (YYYY-MM-DD)
+          if (date) {
+            params.date = date;
+          }
+
+          // Filtro mensual: si viene month, debe venir year
+          if (!month) {
+            _context6.next = 9;
+            break;
+          }
+          if (year) {
+            _context6.next = 7;
+            break;
+          }
+          return _context6.abrupt("return", res.status(400).json({
+            error: "Si envías 'month' debes enviar también 'year'."
+          }));
+        case 7:
+          params.month = month;
+          params.year = year;
+        case 9:
+          _context6.next = 11;
+          return _axios["default"].get("https://api.decolecta.com/v1/tipo-cambio/sunat", {
+            params: params,
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer ".concat(process.env.DECOLECTA_API_TOKEN)
+            }
+          });
+        case 11:
+          response = _context6.sent;
+          data = response.data; // Ejemplo de respuesta esperada:
+          // {
+          //   "buy_price": "3.540",
+          //   "sell_price": "3.552",
+          //   "base_currency": "USD",
+          //   "quote_currency": "PEN",
+          //   "date": "2025-07-26"
+          // }
+          return _context6.abrupt("return", res.status(200).json(data));
+        case 16:
+          _context6.prev = 16;
+          _context6.t0 = _context6["catch"](0);
+          console.error("Error al consultar tipo de cambio SUNAT:", ((_error$response7 = _context6.t0.response) === null || _error$response7 === void 0 ? void 0 : _error$response7.data) || _context6.t0.message);
+          return _context6.abrupt("return", res.status(((_error$response8 = _context6.t0.response) === null || _error$response8 === void 0 ? void 0 : _error$response8.status) || 500).json({
+            error: "Error al consultar el tipo de cambio de SUNAT",
+            detail: ((_error$response9 = _context6.t0.response) === null || _error$response9 === void 0 ? void 0 : _error$response9.data) || _context6.t0.message
+          }));
+        case 20:
+        case "end":
+          return _context6.stop();
+      }
+    }, _callee6, null, [[0, 16]]);
+  }));
+  return function getTipoCambioSunat(_x11, _x12) {
+    return _ref6.apply(this, arguments);
+  };
+}();
