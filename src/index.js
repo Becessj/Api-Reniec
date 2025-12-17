@@ -31,6 +31,8 @@ const corsOptions = {
     'http://10.0.0.216:8080',
     'http://10.0.0.216:8083',
     'http://10.0.0.216:8083/Sistema_MesaPartes_GPA/tramite_nuevo.php',
+    'http://10.0.0.216:8083',
+    'http://10.0.0.216:8083/Sistema_MesaPartes_GPA/tramite_nuevo.php',
     'http://10.0.0.216:3000/login',
     'https://transformaciondigital.guamanpoma.org',
     'https://santiagolimpio.guamanpoma.org',
