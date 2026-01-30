@@ -17,11 +17,9 @@ app.set("port", process.env.PORT || 3000);
 
 // CORS Configuration
 var corsOptions = {
-  origin: ['*',
-  // Permitir a todos los orígenes
-  'http://localhost:8082', 'https://santiagomedioambiente.transformaciondigitalcusco.in', 'https://tramitedocumentario.transformaciondigitalcusco.in', 'http://190.234.243.220:8080/Control_Compactadores/', 'http://190.234.243.220:8080/Sistema_MesaPartes_GPA/', 'https://santiagomedioambiente.transformaciondigitalcusco.in/view/index.php', 'https://santiagomedioambiente.transformaciondigitalcusco.in/', 'https://transformaciondigitalcusco.in/', 'http://190.234.243.220:8080', 'http://localhost:8080', 'http://localhost:8083', 'http://10.0.0.216:8080', 'http://10.0.0.216:8083', 'http://10.0.0.216:8083/Sistema_MesaPartes_GPA/tramite_nuevo.php', 'http://10.0.0.216:8083', 'http://10.0.0.216:8083/Sistema_MesaPartes_GPA/tramite_nuevo.php', 'http://10.0.0.216:3000/login', 'https://transformaciondigital.guamanpoma.org', 'https://santiagolimpio.guamanpoma.org', 'http://localhost:3000', 'http://10.0.0.193:8082', 'http://10.0.0.193/Sistema_MesaPartes_GPA/tramite_nuevo.php', 'https://especializacionseguridadalimentaria.guamanpoma.org', 'https://santiagolimpio.transformaciondigitalcusco.in/login'],
+  origin: ['http://localhost:8082', 'https://santiagomedioambiente.transformaciondigitalcusco.in', 'https://tramitedocumentario.transformaciondigitalcusco.in', 'http://190.234.243.220:8080/Control_Compactadores/', 'http://190.234.243.220:8080/Sistema_MesaPartes_GPA/', 'https://santiagomedioambiente.transformaciondigitalcusco.in/view/index.php', 'https://santiagomedioambiente.transformaciondigitalcusco.in/', 'https://transformaciondigitalcusco.in/', 'http://190.234.243.220:8080', 'http://localhost:8080', 'http://localhost:8083', 'http://10.0.0.216:8080', 'http://10.0.0.216:8083', 'http://10.0.0.216:8083/Sistema_MesaPartes_GPA/tramite_nuevo.php', 'http://10.0.0.216:8083', 'http://10.0.0.216:8083/Sistema_MesaPartes_GPA/tramite_nuevo.php', 'http://10.0.0.216:3000/login', 'https://transformaciondigital.guamanpoma.org', 'https://santiagolimpio.guamanpoma.org', 'http://localhost:3000', 'http://10.0.0.193:8082', 'http://10.0.0.193/Sistema_MesaPartes_GPA/tramite_nuevo.php', 'https://especializacionseguridadalimentaria.guamanpoma.org', 'https://santiagolimpio.transformaciondigitalcusco.in/'],
   // Lista de orígenes permitidos
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   // Métodos HTTP permitidos
   allowedHeaders: ['Content-Type', 'Authorization', "x-access-token"] // Headers permitidos
 };

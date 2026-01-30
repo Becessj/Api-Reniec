@@ -16,7 +16,6 @@ app.set("port", process.env.PORT || 3000);
 // CORS Configuration
 const corsOptions = {
   origin: [
-    '*', // Permitir a todos los orígenes
     'http://localhost:8082',
     'https://santiagomedioambiente.transformaciondigitalcusco.in',
     'https://tramitedocumentario.transformaciondigitalcusco.in',
@@ -40,9 +39,9 @@ const corsOptions = {
     'http://10.0.0.193:8082',
     'http://10.0.0.193/Sistema_MesaPartes_GPA/tramite_nuevo.php',
     'https://especializacionseguridadalimentaria.guamanpoma.org',
-    'https://santiagolimpio.transformaciondigitalcusco.in/login'
+    'https://santiagolimpio.transformaciondigitalcusco.in/'
   ], // Lista de orígenes permitidos
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos HTTP permitidos
+  methods: ['GET', 'POST', 'PUT', 'DELETE','OPTIONS'], // Métodos HTTP permitidos
   allowedHeaders: ['Content-Type', 'Authorization', "x-access-token"], // Headers permitidos
 };
 
