@@ -39,7 +39,8 @@ const corsOptions = {
     'http://localhost:3000',
     'http://10.0.0.193:8082',
     'http://10.0.0.193/Sistema_MesaPartes_GPA/tramite_nuevo.php',
-    'https://especializacionseguridadalimentaria.guamanpoma.org'
+    'https://especializacionseguridadalimentaria.guamanpoma.org',
+    'https://santiagolimpio.transformaciondigitalcusco.in/'
   ], // Lista de orígenes permitidos
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos HTTP permitidos
   allowedHeaders: ['Content-Type', 'Authorization', "x-access-token"], // Headers permitidos
