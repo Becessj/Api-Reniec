@@ -3,59 +3,89 @@ import cors from "cors";
 import dotenv from "dotenv";
 import helmet from "helmet";
 import router from "./routes/reniecsunat.routes";
-import morgan from 'morgan';
-import { PORT } from './config';
+import morgan from "morgan";
+import { PORT } from "./config";
 
+// ==============================
 // Initializations
+// ==============================
 dotenv.config();
 const app = express();
 
+// ==============================
 // Settings
+// ==============================
 app.set("port", process.env.PORT || 3000);
 
-// CORS Configuration
-const corsOptions = {
-  origin: [
-    'http://localhost:8082',
-    'https://santiagomedioambiente.transformaciondigitalcusco.in',
-    'https://tramitedocumentario.transformaciondigitalcusco.in',
-    'http://190.234.243.220:8080/Control_Compactadores/',
-    'http://190.234.243.220:8080/Sistema_MesaPartes_GPA/',
-    'https://santiagomedioambiente.transformaciondigitalcusco.in/view/index.php',
-    'https://santiagomedioambiente.transformaciondigitalcusco.in/',
-    'https://transformaciondigitalcusco.in/',
-    'http://190.234.243.220:8080',
-    'http://localhost:8080',
-    'http://localhost:8083',
-    'http://10.0.0.216:8080',
-    'http://10.0.0.216:8083',
-    'http://10.0.0.216:8083/Sistema_MesaPartes_GPA/tramite_nuevo.php',
-    'http://10.0.0.216:8083',
-    'http://10.0.0.216:8083/Sistema_MesaPartes_GPA/tramite_nuevo.php',
-    'http://10.0.0.216:3000/login',
-    'https://transformaciondigital.guamanpoma.org',
-    'https://santiagolimpio.guamanpoma.org',
-    'http://localhost:3000',
-    'http://10.0.0.193:8082',
-    'http://10.0.0.193/Sistema_MesaPartes_GPA/tramite_nuevo.php',
-    'https://especializacionseguridadalimentaria.guamanpoma.org',
-    'https://santiagolimpio.transformaciondigitalcusco.in/'
-  ], // Lista de orígenes permitidos
-  methods: ['GET', 'POST', 'PUT', 'DELETE','OPTIONS'], // Métodos HTTP permitidos
-  allowedHeaders: ['Content-Type', 'Authorization', "x-access-token"], // Headers permitidos
-};
+// ==============================
+// CORS – ORÍGENES PERMITIDOS
+// ==============================
+const allowedOrigins = [
+  // Local
+  "http://localhost:3000",
+  "http://localhost:5173",
+  "http://localhost:8080",
+  "http://localhost:8082",
+  "http://localhost:8083",
 
+  // IPs internas
+  "http://10.0.0.216:8080",
+  "http://10.0.0.216:8083",
+  "http://10.0.0.193:8082",
+
+  // IP pública directa
+  "http://190.234.243.220:8080",
+
+  // Dominios institucionales
+  "https://transformaciondigitalcusco.in",
+  "https://santiagomedioambiente.transformaciondigitalcusco.in",
+  "https://tramitedocumentario.transformaciondigitalcusco.in",
+  "https://santiagolimpio.transformaciondigitalcusco.in",
+
+  // Dominios Guaman Poma
+  "https://transformaciondigital.guamanpoma.org",
+  "https://santiagolimpio.guamanpoma.org",
+  "https://especializacionseguridadalimentaria.guamanpoma.org",
+];
+
+// ==============================
 // Middlewares
-app.use(cors(corsOptions)); // Aplicar CORS con las opciones configuradas
-app.use(helmet()); // Helmet para mejorar la seguridad
-app.use(morgan("dev")); // Morgan para el logging de las solicitudes
-app.use(express.json()); // Para manejar JSON
-app.use(express.urlencoded({ extended: false })); // Para manejar datos codificados en URL
+// ==============================
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      // Permitir requests sin origin (Postman, server-to-server, cron, etc.)
+      if (!origin) return callback(null, true);
 
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      console.error("❌ CORS bloqueado para:", origin);
+      return callback(new Error("Not allowed by CORS: " + origin));
+    },
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization", "x-access-token"],
+    credentials: false,
+  })
+);
+
+// Responder correctamente a preflight
+app.options("*", cors());
+
+app.use(helmet());
+app.use(morgan("dev"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+// ==============================
 // Routes
+// ==============================
 app.use(router);
 
-// Starting the server
+// ==============================
+// Start server
+// ==============================
 app.listen(PORT, () => {
-  console.log("Server on port", PORT);
+  console.log("✅ API Reniec/Sunat corriendo en puerto", PORT);
 });
